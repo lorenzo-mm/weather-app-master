@@ -1,41 +1,41 @@
-"use client";
-import React, { useEffect } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import { useGlobalContext } from "@/app/context/globalContext";
+'use client'
+import React, { useEffect } from 'react'
+import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
+import { useGlobalContext } from '@/app/context/globalContext'
 
-function FlyToActiveCity({ activeCityCords }) {
-  const map = useMap();
+function FlyToActiveCity ({ activeCityCords }) {
+  const map = useMap()
 
   useEffect(() => {
     if (activeCityCords) {
-      const zoomLev = 13;
+      const zoomLev = 13
       const flyToOptions = {
-        duration: 1.5,
-      };
+        duration: 1.5
+      }
 
       map.flyTo(
         [activeCityCords.lat, activeCityCords.lon],
         zoomLev,
         flyToOptions
-      );
+      )
     }
-  }, [activeCityCords, map]);
+  }, [activeCityCords, map])
 
-  return null;
+  return null
 }
 
-function Mapbox() {
-  const { forecast } = useGlobalContext(); // Your coordinates
+function Mapbox () {
+  const { forecast } = useGlobalContext() // Your coordinates
 
-  const activeCityCords = forecast?.coord;
+  const activeCityCords = forecast?.coord
 
   if (!forecast || !forecast.coord || !activeCityCords) {
     return (
       <div>
         <h1>Loading</h1>
       </div>
-    );
+    )
   }
 
   return (
@@ -45,7 +45,7 @@ function Mapbox() {
         zoom={13}
         scrollWheelZoom={false}
         className="rounded-lg m-4"
-        style={{ height: "calc(100% - 0rem)", width: "calc(100% - 0rem)" }}
+        style={{ height: 'calc(100% - 0rem)', width: 'calc(100% - 0rem)' }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -55,7 +55,7 @@ function Mapbox() {
         <FlyToActiveCity activeCityCords={activeCityCords} />
       </MapContainer>
     </div>
-  );
+  )
 }
 
-export default Mapbox;
+export default Mapbox
