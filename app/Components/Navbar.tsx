@@ -23,7 +23,7 @@ function Navbar() {
           <Button
             className="source-code-btn flex items-center gap-2"
             onClick={() => {
-              router.push("https//github.com");
+              router.push("https://github.com/lorenzo-mm/weather-app-master");
             }}
           >
             {github} Source Code
